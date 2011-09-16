@@ -4,12 +4,37 @@ This project is a purely academic (read: useless) system to get a subset of C to
 
 ## Filetypes
 
-* .tr0 / .turing
+* .turing
+
+    Raw Turing Machine ruleset file. Compressed, machine-readable version.
+
+* .tr0
+
+    Raw Turing Machine ruleset file. Uncompressed, human-readable version.
+
 * .tr1
+
+    Layer-1 Turing Machine Abstraction Language file. Adds, to Layer-0, named states, tapes, and symbols.
+
 * .tr2
+
+    Layer-2 Turing Machine Abstraction Language file. Adds, to Layer-1, a multistate array abstraction and various state transition shorthand.
+
 * .tr3
-* .tasm
+
+    Layer-3 Turing Machine Abstraction Language file. Adds, to Layer-2, ruleset "chaining".
+
 * .tape
+
+    Turing Machine Tape file.
+
+* .tasm
+
+    Turing Machine Assembly Language file.
+
+* .tc
+
+    Turing Machine C file.
 
 ## Machine Structure
 
