@@ -29,11 +29,24 @@ The machine has five tapes, each with a specific purpose:
 
 * Program Tape
 
-    The program tape stores the instructions from a fully compiled and assembled .tasm file. The program tape consists of single-byte instructions, delimited by 2s, with a single 2 at the center of the tape, and the first instruction to the right of it. Instructions are stored with a 3-bit or 4-bit opcode and 5-bit or 4-bit operand, although some instructions may span multiple contiguous bytes.
+    The program tape stores the instructions from an assembled .tasm file. The program tape consists of single-byte instructions, delimited by 2s, with a single 2 at the center of the tape, and the first instruction to the right of it. Instructions are stored with a 3-bit or 4-bit opcode and 5-bit or 4-bit operand, although some instructions may span multiple contiguous bytes. 
 
 * Scratch Tape
+
+    The scratch tape stores partial results within the computation of a single instruction, especially for instructions which move data from one place to another on the working tape. It is not guaranteed to maintain its value between instructions, and it cannot be assumed to hold any specific structure at start of an instruction. 
+
 * Working Tape
 
-## Opcode List
+    The working tape has a very specific structure customized to the goal of running machine code on a turing machine. It is broken into three parts: condition bit, registers, and stack.
+
+    The center of the tape stores the condition bit: 0, 1, or 2, for negative, positive, or zero respectively. To the right and left of the condition bit are 2s, acting as delimiters.
+
+    To the left of the condition bit, after the delimiting 2, are the registers. There are 32 registers, each 8-bits wide, all delimited by 2s, with a trailing 2 to the far left.
+
+    To the right of the condition bit, again after the delimiting 2, is the stack. At initialization, the stack stores a single 0-byte. The stack is structured as a sequence of groups of 8 1s or 0s, terminated on the right by a single 2. Because seeking within the stack past the first byte is unnecessary, and beyond the scope of the data structure, the non-delimited structure allows the stack to hold an "infinite" amount of data (in the sense that the simulated tape is infinite). Making room for a new byte on the stack simply consists of seeking to the right across the stack, copying each bit one to the right during the seek, overwriting the 2 which terminates the stack, then seeking back to the 2 to the right of the center of the tape, and repeating 7 more times. Popping a byte of the stack is similar.
+
+## Machine Code Instructions (Opcode list)
 
 ## Assembly Language Overview
+
+
