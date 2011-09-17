@@ -17,11 +17,13 @@ If all rules for a pair of condition states are identical, aside from the condit
 In situations in which "no-seek" operations occur (usually transitory, during optimization), the pair of instructions
 
 > (st_a, sy_a) -> (sy_b, no seek, st_b)
+
 > (st_b, sy_b) -> (sy_c, direction, st_c)
 
 can be replaced with
 
 > (st_a, sy_a) -> (sy_c, direction, st_c)
+
 > (st_b, sy_b) -> (sy_c, direction, st_c)
 
 in order to remove an unnecessary state change, and potentially enable further optimization.
