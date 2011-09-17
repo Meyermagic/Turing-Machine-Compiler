@@ -2,7 +2,9 @@
 
 In the following examples, turing machine instructions are presented as follows:
 
-> (condition state, condition symbol) -> (written symbol, seek instruction, destination state)
+```
+(condition state, condition symbol) -> (written symbol, seek instruction, destination state)
+```
 
 ## Prune unreachable states
 
@@ -23,9 +25,10 @@ In situations in which "no-seek" operations occur (usually transitory, during op
 
 can be replaced with
 
-> (st_a, sy_a) -> (sy_c, direction, st_c)
-
-> (st_b, sy_b) -> (sy_c, direction, st_c)
+```
+(st_a, sy_a) -> (sy_c, direction, st_c)
+(st_b, sy_b) -> (sy_c, direction, st_c)
+```
 
 in order to remove an unnecessary state change, and potentially enable further optimization.
 
@@ -33,18 +36,26 @@ in order to remove an unnecessary state change, and potentially enable further o
 
 If a situation exists where all the instructions for a given condition state are of the form
 
-> (st_a, sy_a) -> (sy_a, direction, st_b)
+```
+(st_a, sy_a) -> (sy_a, direction, st_b)
+```
 
 for constant st_a, st_b, and direction across all the instructions (that is, if the instructions all seek in the same direction, end in the same state, and make no change to the tape) and an additional rule exists of the form
 
-> (st_c, sy_c) -> (sy_d, opposite direction, st_a)
+```
+(st_c, sy_c) -> (sy_d, opposite direction, st_a)
+```
 
 then the rule 
 
-> (st_c, sy_c) -> (sy_d, opposite direction, st_a)
+```
+(st_c, sy_c) -> (sy_d, opposite direction, st_a)
+```
 
 can be replaced with 
 
-> (st_c, sy_c) -> (sy_d, no seek, st_b)
+```
+(st_c, sy_c) -> (sy_d, no seek, st_b)
+```
 
 with no change to the behavior of the program. This optimization should obviously be followed by removing the resultant "no-seek" operation.
