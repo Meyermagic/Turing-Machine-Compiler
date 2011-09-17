@@ -53,9 +53,7 @@ then the rule
 ```
 
 can be replaced with 
-
 ```
 (st_c, sy_c) -> (sy_d, no seek, st_b)
 ```
-
 with no change to the behavior of the program. This optimization should obviously be followed by removing the resultant "no-seek" operation.
