@@ -46,14 +46,10 @@ for constant st_a, st_b, and direction across all the instructions (that is, if 
 (st_c, sy_c) -> (sy_d, opposite direction, st_a)
 ```
 
-then the rule 
+then that rule can be replaced with 
 
-```
-(st_c, sy_c) -> (sy_d, opposite direction, st_a)
-```
-
-can be replaced with 
 ```
 (st_c, sy_c) -> (sy_d, no seek, st_b)
 ```
+
 with no change to the behavior of the program. This optimization should obviously be followed by removing the resultant "no-seek" operation.
